@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<style>
+		div { margin:4px;	float:left; }
+		#calculator { background-color: #000000; width:300px; }		
+		#readout { width:100%; text-align:center; }
+		#content { width:280px;	text-align:right; font-size: 14pt;}
+		.bc { clear:both;	}
+		img { width:50px; height:50px; border: 1px solid black; }
+	</style>
+</head>
+
+<body style="background-color: #8ED081; color: #000;">
+
+	<h1>Need a quick calculation? Got you covered!</h1>
+
+	<form name="calculator">
+		<div id="calculator">
+			<div id="readout">
+				<input type="text" name="content" id="content" />
+			</div>
+			<br class="bc" />
+			<div style="width:45%; text-align:center">
+				<a href="#" onclick="reset()"><img src="./Images/number-C-sign.jpg" /></a>
+			</div>
+			<div style="width:45%; text-align:center">
+				<a href="#" onclick="performCalculation()"><img src="./Images/number-equals-sign.jpg" /></a></td>
+			</div>
+			<br class="bc" />
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='7'">
+					<img src="./Images/number-seven.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='8'">
+					<img src="./Images/number-eight.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='9'">
+					<img src="./Images/number-nine.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="saveFunction('add')">
+					<img src="./Images/number-plus-sign.jpg" name="p" />
+				</a>
+			</div>
+			<br class="bc" />
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='4'">
+					<img src="./Images/number-four.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='5'">
+					<img src="./Images/number-five.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='6'">
+					<img src="./Images/number-six.jpg"/>
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="saveFunction('minus')">
+					<img src="./Images/number-minus-sign.jpg" name="s" />
+				</a>
+			</div>
+			<br class="bc" />
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='1'">
+					<img src="./Images/number-one.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='2'">
+					<img src="./Images/number-two.jpg" />
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='3'">
+					<img src="./Images/number-three.jpg"/>
+				</a>
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="saveFunction('multiply')"><img src="./Images/number-multiply-sign.jpg" name="multiply" /></a>
+			</div>
+			<br class="bc" />
+			<div style="width:22%; text-align:center">
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="document.getElementById('content').value+='0'"><img src="./Images/number-zero.jpg" /></a>
+			</div>
+			<div style="width:22%; text-align:center">
+			</div>
+			<div style="width:22%; text-align:center">
+				<a href="#" onclick="saveFunction('divide')"><img src="./Images/number-divide-sign.jpg" name="d" /></a>
+			</div>
+			<br class="bc" />
+		</div>
+	</form>
+
+	<script>
+
+		var num1 = '';
+		var num2 = '';
+		var num1Int = 0;
+		var num2Int = 0;
+		var result = 0;
+		var mathOperation = '';
+
+		function reset() {
+			// Clear all variables
+			var num1 = '';
+			var num2 = '';
+			var num1Int = 0;
+			var num2Int = 0;
+			var result = 0;
+			var mathOperation = '';
+			// Clear calculator display / input box
+			document.getElementById('content').value = '';
+		}
+
+		function saveFunction(newMathOp) {
+			// Save first number
+			num1 = document.getElementById('content').value;
+			
+			// Save selected Math Operation
+			mathOperation = newMathOp;
+			
+			// Clear calculator display / input box
+			document.getElementById('content').value = '';
+			
+		}
+
+		function performCalculation() {
+			// Check if 'num1' is a valid number.
+			if (!isNaN(num1)) {
+				num1Int = parseInt(num1);
+			}
+			else {
+				window.alert("Issue with number inserted just before this one. Please clear and try again");
+			}
+
+			num2 = document.getElementById('content').value;
+			// Check if 'num2' is a valid number.
+			if (!isNaN(num2)) {
+				num2Int = parseInt(num2);
+			}
+			else {
+				window.alert("Issue with number just inserted. Please clear and try again");
+			}
+
+			// Check if 'mathOperation' is initialized (not empty).
+			if (mathOperation.length > 0) {
+				if (mathOperation == 'add') {
+					result = num1Int + num2Int;
+					document.getElementById('content').value = result;
+				}
+				else if (mathOperation == 'minus') {
+					result = num1Int - num2Int;
+					document.getElementById('content').value = result;
+					
+				}
+				else if (mathOperation == 'multiply') {
+					result = num1Int * num2Int;
+					document.getElementById('content').value = result;
+					
+				}
+				else {
+					result = num1Int / num2Int;
+					document.getElementById('content').value = result;
+
+				}
+			}
+			else {
+				window.alert("Issue with operator. Please clear and try again");
+			}
+
+			// Use if-statements to perform correct math operation (addition, subtraction, multiplication, division)
+
+			// Display result on calculator display / input box.
+
+		}
+	</script>
+
+</body>
+</html>
