@@ -10,4 +10,4 @@ a simple calculator in the style of google's calculator.
 
 ## Uses Github Pages
 
-https://nlcaceres.github.io/calculator-webapp
+https://nlcaceres.github.io/calculator-webApp/
